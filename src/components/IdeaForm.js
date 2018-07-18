@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
-import IdeaForm from "./IdeaForm"
 import {authInputChange, login} from "../actions/AuthActions";
 
-class LoginForm extends Component {
+class IdeaForm extends Component {
   onButtonPress() {
     const {email, password} = this.props;
     this.props.login({email, password})
@@ -21,7 +20,7 @@ class LoginForm extends Component {
     }
     return (
       <Button
-        title="Login"
+        title="Submit"
         backgroundColor="#3bd3d4"
         onPress={this.onButtonPress.bind(this)}
       />
@@ -37,30 +36,23 @@ class LoginForm extends Component {
   }
 
   render() {
-    if (this.props.user) {
-      return (
-        <IdeaForm/>
-      )
-    }
     return (
       <View style={styles.formStyle}>
         <View style={styles.sectionStyle}>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>Subject</FormLabel>
           <FormInput
-            value={this.props.email}
-            placeholder="Email"
-            onChangeText={text => this.props.authInputChange({"field": "email", "value": text})}/>
+            value={this.props.subject}
+            placeholder="Subject"
+            onChangeText={text => this.props.authInputChange({"field": "subject", "value": text})}/>
         </View>
         <View style={styles.sectionStyle}>
-          <FormLabel>Password</FormLabel>
+          <FormLabel>Idea</FormLabel>
           <FormInput
-            value={this.props.password}
-            placeholder="Password"
-            secureTextEntry
-            onChangeText={text => this.props.authInputChange({"field": "password", "value": text})}/>
-        </View>
-        <View style={styles.sectionStyle}>
-          {this.displayErrorOrConfirm()}
+            multiline={true}
+            inputStyle={{height: 200}}
+            value={this.props.idea}
+            placeholder="Put your idea here!"
+            onChangeText={text => this.props.authInputChange({"field": "idea", "value": text})}/>
         </View>
         <View style={styles.sectionStyle}>
           {this.displayButtonOrSpinner()}
@@ -91,4 +83,4 @@ const styles = {
 };
 
 
-export default connect(mapStateToProps, {authInputChange, login})(LoginForm);
+export default connect(mapStateToProps, {authInputChange, login})(IdeaForm);
