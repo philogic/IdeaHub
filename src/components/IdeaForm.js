@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import {View, ActivityIndicator} from "react-native";
-import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
+import {View, ActivityIndicator, Keyboard} from "react-native";
+import {Button, FormLabel, FormInput} from "react-native-elements";
 import {connect} from "react-redux";
-import {authInputChange, login} from "../actions/AuthActions";
+import {ideaInputChange, createIdea} from "../actions";
 
 class IdeaForm extends Component {
   onButtonPress() {
-    const {email, password} = this.props;
-    this.props.login({email, password})
+    const {subject, idea} = this.props;
+    this.props.createIdea({subject, idea});
   };
 
   displayButtonOrSpinner() {
@@ -27,14 +27,6 @@ class IdeaForm extends Component {
     );
   };
 
-  displayErrorOrConfirm() {
-    if (this.props.error) {
-      return (
-        <FormValidationMessage>{this.props.error}</FormValidationMessage>
-      )
-    }
-  }
-
   render() {
     return (
       <View style={styles.formStyle}>
@@ -43,7 +35,8 @@ class IdeaForm extends Component {
           <FormInput
             value={this.props.subject}
             placeholder="Subject"
-            onChangeText={text => this.props.authInputChange({"field": "subject", "value": text})}/>
+            onChangeText={text => this.props.ideaInputChange({"field": "subject", "value": text})}
+          />
         </View>
         <View style={styles.sectionStyle}>
           <FormLabel>Idea</FormLabel>
@@ -52,7 +45,9 @@ class IdeaForm extends Component {
             inputStyle={{height: 200}}
             value={this.props.idea}
             placeholder="Put your idea here!"
-            onChangeText={text => this.props.authInputChange({"field": "idea", "value": text})}/>
+            onChangeText={text => this.props.ideaInputChange({"field": "idea", "value": text})}
+          />
+
         </View>
         <View style={styles.sectionStyle}>
           {this.displayButtonOrSpinner()}
@@ -64,11 +59,8 @@ class IdeaForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.email,
-    password: state.auth.password,
-    isLoading: state.auth.isLoading,
-    user: state.auth.user,
-    error: state.auth.error
+    subject: state.ideared.subject,
+    idea: state.ideared.idea
   }
 };
 
@@ -83,4 +75,4 @@ const styles = {
 };
 
 
-export default connect(mapStateToProps, {authInputChange, login})(IdeaForm);
+export default connect(mapStateToProps, {ideaInputChange, createIdea})(IdeaForm);

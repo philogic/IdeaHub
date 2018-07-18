@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import firebase from "firebase";
 import config from "./config"
 import LoginForm from "./src/components/LoginForm";
+import KeyboardDismiss from "./src/components/KeyboardDismiss"
 import {Header} from "./src/components/shared";
 import reducers from "./src/reducers";
 
@@ -19,10 +20,12 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger));
     return (
       <Provider store={store}>
-        <View>
-          <Header title="Please Login"/>
-          <LoginForm/>
-        </View>
+        <KeyboardDismiss>
+          <View>
+            <Header title="Please Login"/>
+            <LoginForm/>
+          </View>
+        </KeyboardDismiss>
       </Provider>
     );
   }

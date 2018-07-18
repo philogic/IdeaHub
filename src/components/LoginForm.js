@@ -3,7 +3,7 @@ import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
 import IdeaForm from "./IdeaForm"
-import {authInputChange, login} from "../actions/AuthActions";
+import {authInputChange, login} from "../actions";
 
 class LoginForm extends Component {
   onButtonPress() {
@@ -72,11 +72,11 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.email,
-    password: state.auth.password,
-    isLoading: state.auth.isLoading,
-    user: state.auth.user,
-    error: state.auth.error
+    email: state.authred.email,
+    password: state.authred.password,
+    isLoading: state.authred.isLoading,
+    user: state.authred.user,
+    error: state.authred.error
   }
 };
 
