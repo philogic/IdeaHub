@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
-import IdeaList from "./IdeaList"
 import {authInputChange, login} from "../actions";
 
 class LoginForm extends Component {
@@ -37,11 +36,6 @@ class LoginForm extends Component {
   }
 
   render() {
-    if (this.props.user) {
-      return (
-        <IdeaList/>
-      )
-    }
     return (
       <View style={styles.formStyle}>
         <View style={styles.sectionStyle}>
