@@ -1,4 +1,5 @@
 import React from "react";
+import {Icon} from "react-native-elements";
 import {createStackNavigator, createSwitchNavigator} from "react-navigation";
 import LoginForm from "./components/LoginForm";
 import IdeaForm from "./components/IdeaForm";
@@ -16,8 +17,21 @@ const AuthStack = createStackNavigator({
 const AppStack = createStackNavigator({
   Ideas: {
     screen: IdeaList,
-    navigationOptions: {
-      title: "Your Ideas"
+    navigationOptions: ({navigation}) => {
+      return {
+        title: "Your Ideas",
+        headerRight: (
+          <Icon
+            type="evilicon"
+            name="plus"
+            sixe={30}
+            onPress={() => navigation.navigate("CreateIdea")}
+            iconStyle={{padding: 10}}
+          />
+        ),
+        headerLeft: null
+      }
+
     }
   },
   CreateIdea: {

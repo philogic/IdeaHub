@@ -3,8 +3,15 @@ import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
 import {authInputChange, login} from "../actions";
+import _ from "lodash";
 
 class LoginForm extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEmpty(nextProps.user)) {
+      this.props.navigation.navigate("App")
+    }
+  }
+
   onButtonPress() {
     const {email, password} = this.props;
     this.props.login({email, password})
