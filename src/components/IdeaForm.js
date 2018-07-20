@@ -59,8 +59,8 @@ class IdeaForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    subject: state.ideared.subject,
-    idea: state.ideared.idea
+    subject: state.ideacreatred.subject,
+    idea: state.ideacreatred.idea
   }
 };
 

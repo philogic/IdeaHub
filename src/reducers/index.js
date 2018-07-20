@@ -1,8 +1,10 @@
 import {combineReducers} from "redux";
 import AuthReducer from "./AuthReducer"
-import IdeaReducer from "./IdeaReducer"
+import IdeaCreationReducer from "./IdeaCreationReducer"
+import IdeasListReducer from "./IdeasListReducer";
 
 export default combineReducers({
   authred: AuthReducer,
-  ideared: IdeaReducer
+  ideacreatred: IdeaCreationReducer,
+  idealistred: IdeasListReducer
 })
