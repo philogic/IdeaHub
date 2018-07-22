@@ -1,38 +1,13 @@
 import React, {Component} from "react";
-import {View, ActivityIndicator} from "react-native";
-import {Button, FormLabel, FormInput} from "react-native-elements";
+import {View} from "react-native";
+import {FormLabel, FormInput} from "react-native-elements";
 import {connect} from "react-redux";
-import {ideaInputChange, createIdea} from "../actions";
+import {ideaInputChange} from "../actions";
 
 class IdeaForm extends Component {
-  onButtonPress() {
-    const {subject, idea} = this.props;
-    this.props.createIdea({subject, idea});
-  };
-
-  displayButtonOrSpinner() {
-    if (this.props.isLoading) {
-      return (
-        <View>
-          <ActivityIndicator size="small"/>
-        </View>
-      );
-    }
-    return (
-      <Button
-        title="Submit"
-        backgroundColor="#3bd3d4"
-        onPress={this.onButtonPress.bind(this)}
-      />
-    );
-  };
-
   render() {
     return (
-      <View style={styles.formStyle}>
-        <View style={styles.sectionStyle}>
-          {this.displayButtonOrSpinner()}
-        </View>
+      <View>
         <View style={styles.sectionStyle}>
           <FormLabel>Subject</FormLabel>
           <FormInput
@@ -64,9 +39,6 @@ const mapStateToProps = state => {
 };
 
 const styles = {
-  formStyle: {
-    marginTop: 60
-  },
   sectionStyle: {
     marginTop: 10,
     marginBottom: 10
@@ -74,4 +46,4 @@ const styles = {
 };
 
 
-export default connect(mapStateToProps, {ideaInputChange, createIdea})(IdeaForm);
+export default connect(mapStateToProps, {ideaInputChange})(IdeaForm);

@@ -16,6 +16,7 @@ class IdeaList extends Component {
           key={idea.id}
           title={idea.subject}
           leftIcon={{name: "lightbulb-outline"}}
+          onPress={() => this.props.navigation.navigate("EditIdea", { idea })}
         />
       )
     })
