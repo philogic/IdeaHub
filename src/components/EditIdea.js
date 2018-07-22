@@ -2,13 +2,22 @@ import React, {Component} from "react";
 import {View} from "react-native";
 import {Button} from "react-native-elements";
 import {connect} from "react-redux";
+import _ from "lodash";
 import IdeaForm from "./IdeaForm";
-import {ideaInputChange, createIdea} from "../actions";
+import {ideaInputChange, editIdea} from "../actions";
 
-class AddIdea extends Component {
+class EditIdea extends Component {
+  componentDidMount() {
+    const {params} = this.props.navigation.state;
+    _.each(params.idea, (value, field) => {
+      this.props.ideaInputChange({field, value})
+    });
+  };
+
   onButtonPress() {
+    const {id} = this.props.navigation.state.params.idea;
     const {subject, idea} = this.props;
-    this.props.createIdea({subject, idea});
+    this.props.editIdea({subject, idea, id});
   };
 
   render() {
@@ -30,7 +39,7 @@ class AddIdea extends Component {
             onPress={this.onButtonPress.bind(this)}
           />
         </View>
-        <IdeaForm/>
+        <IdeaForm {...this.props}/>
       </View>
     )
   }
@@ -54,4 +63,4 @@ const styles = {
 };
 
 
-export default connect(mapStateToProps, {ideaInputChange, createIdea})(AddIdea);
+export default connect(mapStateToProps, {ideaInputChange, editIdea})(EditIdea);

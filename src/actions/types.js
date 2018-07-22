@@ -4,4 +4,5 @@ export const AUTH_SUCCESS = "auth success";
 export const AUTH_FAILURE = "auth failure";
 export const IDEA_INPUT_CHANGE = "idea input change";
 export const NEW_IDEA = "new idea";
+export const EDIT_IDEA = "edit idea";
 export const FETCH_IDEAS = "fetch ideas";

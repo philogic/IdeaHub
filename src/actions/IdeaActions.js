@@ -1,5 +1,10 @@
 import firebase from "firebase";
-import {IDEA_INPUT_CHANGE, NEW_IDEA, FETCH_IDEAS} from "./types";
+import {
+  IDEA_INPUT_CHANGE,
+  NEW_IDEA,
+  EDIT_IDEA,
+  FETCH_IDEAS
+} from "./types";
 
 export const ideaInputChange = ({field, value}) => {
   return {
@@ -16,6 +21,16 @@ export const createIdea = ({subject, idea}) => {
       .push({subject, idea})
       .then(() => dispatch({type: NEW_IDEA}))
   }
+};
+
+export const editIdea = ({subject, idea, id}) => {
+  const {uid} = firebase.auth().currentUser;
+  return (dispatch => {
+    firebase.database().ref(`/userIdeas/${uid}/ideas/${id}`)
+      .set({subject, idea})
+      .then(() => dispatch({type: EDIT_IDEA}))
+  })
+
 };
 
 export const fetchIdeas = () => {
