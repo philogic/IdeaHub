@@ -6,7 +6,6 @@ import {Provider} from "react-redux";
 import firebase from "firebase";
 import config from "./config";
 import AppNavigator from "./src/navigation";
-import KeyboardDismiss from "./src/components/KeyboardDismiss"
 import reducers from "./src/reducers";
 
 
@@ -18,9 +17,7 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger));
     return (
       <Provider store={store}>
-        <KeyboardDismiss>
-          <AppNavigator/>
-        </KeyboardDismiss>
+        <AppNavigator/>
       </Provider>
     );
   }

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, ActivityIndicator, Keyboard} from "react-native";
+import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput} from "react-native-elements";
 import {connect} from "react-redux";
 import {ideaInputChange, createIdea} from "../actions";
@@ -31,6 +31,9 @@ class IdeaForm extends Component {
     return (
       <View style={styles.formStyle}>
         <View style={styles.sectionStyle}>
+          {this.displayButtonOrSpinner()}
+        </View>
+        <View style={styles.sectionStyle}>
           <FormLabel>Subject</FormLabel>
           <FormInput
             value={this.props.subject}
@@ -47,10 +50,6 @@ class IdeaForm extends Component {
             placeholder="Put your idea here!"
             onChangeText={text => this.props.ideaInputChange({"field": "idea", "value": text})}
           />
-
-        </View>
-        <View style={styles.sectionStyle}>
-          {this.displayButtonOrSpinner()}
         </View>
       </View>
     )
