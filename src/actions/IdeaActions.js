@@ -1,9 +1,10 @@
 import firebase from "firebase";
 import {
   IDEA_INPUT_CHANGE,
+  FETCH_IDEAS,
   NEW_IDEA,
   EDIT_IDEA,
-  FETCH_IDEAS
+  DELETE_IDEA
 } from "./types";
 
 export const ideaInputChange = ({field, value}) => {
@@ -30,7 +31,15 @@ export const editIdea = ({subject, idea, id}) => {
       .set({subject, idea})
       .then(() => dispatch({type: EDIT_IDEA}))
   })
+};
 
+export const removeIdea = ({id}) => {
+  const {uid} = firebase.auth().currentUser;
+  return (dispatch => {
+    firebase.database().ref(`/userIdeas/${uid}/ideas/${id}`)
+      .remove()
+      .then(() => dispatch({type: DELETE_IDEA}))
+  })
 };
 
 export const fetchIdeas = () => {

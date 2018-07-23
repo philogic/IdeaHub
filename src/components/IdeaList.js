@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
   const ideas = _.map(state.idealistred, (val, id) => {
     val["id"] = id;
     return val
-  })
+  });
 
   return {ideas};
 };

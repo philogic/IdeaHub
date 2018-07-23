@@ -3,8 +3,9 @@ import {View} from "react-native";
 import {Button} from "react-native-elements";
 import {connect} from "react-redux";
 import _ from "lodash";
+import styles from "../../styles"
 import IdeaForm from "./IdeaForm";
-import {ideaInputChange, editIdea} from "../actions";
+import {ideaInputChange, editIdea, removeIdea} from "../actions";
 
 class EditIdea extends Component {
   componentDidMount() {
@@ -14,10 +15,17 @@ class EditIdea extends Component {
     });
   };
 
-  onButtonPress() {
+  update() {
     const {id} = this.props.navigation.state.params.idea;
     const {subject, idea} = this.props;
     this.props.editIdea({subject, idea, id});
+    this.props.navigation.navigate("Ideas");
+  };
+
+  delete() {
+    const {id} = this.props.navigation.state.params.idea;
+    this.props.removeIdea({id});
+    this.props.navigation.navigate("Ideas");
   };
 
   render() {
@@ -28,7 +36,7 @@ class EditIdea extends Component {
           <Button
             title="Save"
             backgroundColor="blue"
-            onPress={this.onButtonPress.bind(this)}
+            onPress={this.update.bind(this)}
           />
         </View>
         <View style={styles.sectionStyle}>
@@ -36,7 +44,7 @@ class EditIdea extends Component {
           <Button
             title="Delete"
             backgroundColor="red"
-            onPress={this.onButtonPress.bind(this)}
+            onPress={this.delete.bind(this)}
           />
         </View>
         <IdeaForm {...this.props}/>
@@ -52,15 +60,5 @@ const mapStateToProps = state => {
   }
 };
 
-const styles = {
-  formStyle: {
-    marginTop: 60
-  },
-  sectionStyle: {
-    marginTop: 10,
-    marginBottom: 10
-  }
-};
 
-
-export default connect(mapStateToProps, {ideaInputChange, editIdea})(EditIdea);
+export default connect(mapStateToProps, {ideaInputChange, editIdea, removeIdea})(EditIdea);

@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
-import {authInputChange, login} from "../actions";
 import _ from "lodash";
+import {authInputChange, login} from "../actions";
+import styles from "../../styles"
 
 class LoginForm extends Component {
   componentWillReceiveProps(nextProps) {
@@ -49,14 +50,14 @@ class LoginForm extends Component {
           <FormLabel>Email</FormLabel>
           <FormInput
             value={this.props.email}
-            placeholder="Email"
+            placeholder="email"
             onChangeText={text => this.props.authInputChange({"field": "email", "value": text})}/>
         </View>
         <View style={styles.sectionStyle}>
           <FormLabel>Password</FormLabel>
           <FormInput
             value={this.props.password}
-            placeholder="Password"
+            placeholder="password"
             secureTextEntry
             onChangeText={text => this.props.authInputChange({"field": "password", "value": text})}/>
         </View>
@@ -80,16 +81,5 @@ const mapStateToProps = state => {
     error: state.authred.error
   }
 };
-
-const styles = {
-  formStyle: {
-    marginTop: 60
-  },
-  sectionStyle: {
-    marginTop: 10,
-    marginBottom: 10
-  }
-};
-
 
 export default connect(mapStateToProps, {authInputChange, login})(LoginForm);

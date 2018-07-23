@@ -1,4 +1,9 @@
-import {IDEA_INPUT_CHANGE, NEW_IDEA, EDIT_IDEA} from "../actions/types"
+import {
+  IDEA_INPUT_CHANGE,
+  NEW_IDEA,
+  EDIT_IDEA,
+  DELETE_IDEA
+} from "../actions/types"
 
 const INIT_STATE = {
   subject: "",
@@ -12,6 +17,8 @@ export default (state = INIT_STATE, action) => {
     case  NEW_IDEA:
       return INIT_STATE;
     case EDIT_IDEA:
+      return INIT_STATE;
+    case DELETE_IDEA:
       return INIT_STATE;
     default:
       return state

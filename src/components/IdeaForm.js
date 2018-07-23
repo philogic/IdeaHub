@@ -38,12 +38,5 @@ const mapStateToProps = state => {
   }
 };
 
-const styles = {
-  sectionStyle: {
-    marginTop: 10,
-    marginBottom: 10
-  }
-};
-
 
 export default connect(mapStateToProps, {ideaInputChange})(IdeaForm);
