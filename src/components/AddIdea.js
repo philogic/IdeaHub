@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {View} from "react-native";
 import {Button} from "react-native-elements";
 import {connect} from "react-redux";
+import styles from "../../styles";
 import IdeaForm from "./IdeaForm";
 import {ideaInputChange, createIdea} from "../actions";
 
@@ -9,6 +10,7 @@ class AddIdea extends Component {
   onButtonPress() {
     const {subject, idea} = this.props;
     this.props.createIdea({subject, idea});
+    this.props.navigation.navigate("Ideas");
   };
 
   render() {

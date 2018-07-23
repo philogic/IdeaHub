@@ -3,8 +3,8 @@ import {View, ActivityIndicator} from "react-native";
 import {Button, FormLabel, FormInput, FormValidationMessage} from "react-native-elements";
 import {connect} from "react-redux";
 import _ from "lodash";
-import {authInputChange, login} from "../actions";
 import styles from "../../styles"
+import {authInputChange, login} from "../actions";
 
 class LoginForm extends Component {
   componentWillReceiveProps(nextProps) {

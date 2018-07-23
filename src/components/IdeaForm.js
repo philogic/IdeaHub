@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {View} from "react-native";
 import {FormLabel, FormInput} from "react-native-elements";
 import {connect} from "react-redux";
+import styles from "../../styles";
 import {ideaInputChange} from "../actions";
 
 class IdeaForm extends Component {
